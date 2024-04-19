@@ -50,7 +50,7 @@ const Flag = () => (
     sx={{ mt: -3, lineHeight: 0 }}
   >
     <Image
-      src="https://assets.hackclub.com/flag-orpheus-top.svg"
+      src="https://drive.google.com/file/d/1E-iUO55CJ2vMdy1l0WmiWz-68TeKQFUt/view?usp=sharing"
       alt="Hack Club flag"
       sx={{ width: [96, 128] }}
     />

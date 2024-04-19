@@ -11,7 +11,7 @@ import { filter, orderBy, slice, last, remove } from 'lodash'
 import { timeSince, humanizedDateRange } from '../lib/util'
 import { getGroupingData } from '../lib/data'
 
-const title = `High School Hackathons in ${new Date().getFullYear()}`
+const title = `K-12 Hackathons in ${new Date().getFullYear()}`
 const eventsPreview = events =>
   slice(events, 0, 4)
     .map(
@@ -30,11 +30,11 @@ export default ({ stats, emailStats, events, header }) => (
         <Meta
           as={Head}
           title={title}
-          description={`${title}. A curated list of online and in-person high school hackathons with ${
+          description={`${title}. A list of Educational hasckathon in UAE ${
             events.length
           } events in ${stats.state} states + ${
             stats.country
-          } countries. Maintained by the Hack Club staff. ${eventsPreview(
+          } countries. Maintained by the bitandbrick staff. ${eventsPreview(
             events
           )}`}
         />
