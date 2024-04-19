@@ -1,30 +1,26 @@
 import React from 'react'
 import Head from 'next/head'
 
+import Analytics from '../components/analytics.js'
+
 import Meta from '@hackclub/meta'
 import '@hackclub/theme/fonts/reg-bold.css'
-import 'mapbox-gl/dist/mapbox-gl.css';
 import theme from '../lib/theme'
 import { ThemeProvider } from 'theme-ui'
-import NProgress from '../components/nprogress'
-import Nav from '../components/nav'
-import Footer from '../components/footer'
-import Analytics from '../components/analytics'
+import { Provider as BalancerProvider } from 'react-wrap-balancer'
 
 const App = ({ Component, pageProps }) => (
   <ThemeProvider theme={theme}>
-    <Meta
-      as={Head}
-      title="Hack Club Hackathons"
-      name="Hack Club Hackathons"
-      description="Listing of upcoming online and in-person high school hackathons around the world."
-      image="/card.png"
-    />
+    <Meta as={Head}>
+      <meta
+        name="google-site-verification"
+        content="7zE7h5foPaxIcnv5Frq6BkcUb9-3UzVc8q3P_cexf9I"
+      />
+    </Meta>
+    <BalancerProvider>
+      <Component {...pageProps} />
+    </BalancerProvider>
     <Analytics />
-    <NProgress color={theme.colors.primary} />
-    <Nav app />
-    <Component {...pageProps} />
-    <Footer />
   </ThemeProvider>
 )
 

@@ -1,6 +1,7 @@
-import { Card, Text } from 'theme-ui'
+import { Card, Text, Box } from 'theme-ui'
 import { keyframes } from '@emotion/react'
 import Icon from './icon'
+import Image from 'next/image'
 
 const unfold = keyframes({
   from: { transform: 'scaleY(0)' },
@@ -12,62 +13,67 @@ const Announcement = ({
   copy,
   iconLeft,
   iconRight,
+  imgSrc,
+  imgAlt,
   color = 'accent',
   sx = {},
-  copyLogo,
-  backgroundImage,
-  copyColor,
-  captionColor,
   ...props
 }) => (
   <Card
-	as={props.href ? 'a' : 'div'}
-	variant="interactive"
-	sx={{
-	  variant: 'cards.translucent',
-	  mx: 'auto',
-	  maxWidth: 'narrow',
-	  width: '100%',
-	  textAlign: 'center',
-	  textDecoration: 'none',
-	  lineHeight: 'caption',
-	  display: 'flex',
-	  alignItems: 'center',
-	  p: [3, 3],
-	  mt: [3, 4],
-	  transform: 'scale(1)',
-	  '@media (prefers-reduced-motion: no-preference)': {
-		animation: `${unfold} 0.5s ease-out`
-	  },
-	  svg: { flexShrink: 'none' },
-	  backgroundImage: `url(${backgroundImage})`,
-	  ...sx
-	}}
-	{...props}
+    as={props.href ? 'a' : 'div'}
+    variant="interactive"
+    sx={{
+      variant: 'cards.translucent',
+      mx: 'auto',
+      maxWidth: 'narrow',
+      width: '100%',
+      textAlign: 'left',
+      textDecoration: 'none',
+      lineHeight: 'caption',
+      display: 'flex',
+      alignItems: 'center',
+      p: [2, 2],
+      px: 3,
+      mb: [3, 4],
+      mt: [null, -3, -5],
+      transform: 'scale(1)',
+      '@media (prefers-reduced-motion: no-preference)': {
+        animation: `${unfold} 0.5s ease-out`
+      },
+      svg: { flexShrink: 'none' },
+      ...sx
+    }}
+    {...props}
   >
-	{iconLeft && (
-	  <Icon
-		glyph={iconLeft}
-		sx={{ mr: [2, 3], ml: 2, color, display: ['none', 'block'] }}
-	  />
-	)}
-	
-	<Text
-    as="p"
-    sx={{ flex: '1 1 auto', strong: { display: ['inline', 'block'] }, color: copyColor }}
-  >
-		  {copyLogo && (
-      <img src={copyLogo} alt="Copy Logo" style={{ maxWidth: '280px', display: ['inline', 'block'] }} />
+    {iconLeft && (
+      <Icon
+        glyph={iconLeft}
+        sx={{ mr: [2, 3], ml: 2, color, display: ['none', 'block'] }}
+      />
     )}
-    <strong>{copy}</strong>
-    {caption && (
-      <Text as="span" variant="caption" color={captionColor}> 
-        {' '}
-        {caption}
-      </Text>
+    {imgSrc && (
+      <Box sx={{ mr: [2,3], width: 32, flexShrink: 0 }}>
+        <Image
+          src={imgSrc}
+          alt={imgAlt}
+          width={32}
+          height={32}
+        />
+      </Box>
     )}
-  </Text>
-	{iconRight && <Icon glyph={iconRight} sx={{ ml: [2, 3], color }} />}
+    <Text
+      as="p"
+      sx={{ flex: '1 1 auto', strong: { display: ['inline', 'block'] } }}
+    >
+      <strong>{copy}</strong>
+      {caption && (
+        <Text as="span" variant="caption" color="secondary">
+          {' '}
+          {caption}
+        </Text>
+      )}
+    </Text>
+    {iconRight && <Icon glyph={iconRight} sx={{ ml: [2, 3], color }} />}
   </Card>
 )
 
